@@ -1,0 +1,81 @@
+/* ==================== DIFFERENTIALS SECTION ==================== */
+.differentials {
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.differentials::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.differentials::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.differentials__container {
+    position: relative;
+    z-index: 1;
+}
+
+.differentials__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+/* Differential Card */
+.differential-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-base);
+    text-align: center;
+}
+
+.differential-card:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-8px);
+}
+
+.differential-card__icon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-white);
+    margin: 0 auto var(--spacing-md);
+}
+
+.differential-card__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-white);
+}
+
+.differential-card__description {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: rgba(255, 255, 255, 0.9);
+}

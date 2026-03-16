@@ -1,0 +1,148 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    /* usado para um reset de font(h1 não fica negrito) */
+    font: inherit;
+
+    /* usado para suavizar fontes nos navegadores, (chrome,mozila) */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-fot-smoothing: grayscale;
+}
+
+:root{
+    /* cores */
+    --bg-color: #09090B;
+    --surface-color:#18181B;
+    --stroker-color: #27272A;
+    --text-color-primary: #F4F4F5;
+    --text-color-secondary: #A1A1AA;
+    --brand-color-primary: #f8b733;
+    --brand-color-secondary: #FC4A1A;
+    --brand-gradient:#FC4A1A #F7B733;
+
+    /* variaveis de fontes */
+    --ff-sans:'Inter', system-ui, sans-serif;
+    /* font-width(largura) */
+    --fw-base:400;
+    --fw-md:500;
+    --fw-bold:800;
+
+    /* font-size(tamanho), para mobile, no style guide está, size 40px, define-se o nome da variável e calcula os rem */
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-lg: 1.25rem;
+    --fs-xl: 1.5rem;
+    --fs-2xl:2.5rem;
+
+    /* padding do eixo y (vertical) */
+    --py-base: 1rem;
+    --py-lg: 1.5rem;
+    --py-xl: 3rem;
+
+   /* paddin do eixo x(lado direito e esquerdo */
+    --px-lg:1.5rem;
+
+
+}
+/* para adicionar todas esses utilidades deve-se verificar onde elas se repetem e agrupar em aplicações, largura/altura de letras, 
+background, etc. */
+
+html{
+    font-family: var(--ff-sans);
+    font-weight: var(--fw-base);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--text-color-primary);
+
+    
+    /* evita o transbordamento para não ter rolagem de um lsdo para o outro */
+    overflow-x: hidden;
+
+    /* deixa o scroll suave */
+    scroll-behavior: smooth;
+
+}
+
+body{
+ background-color: var(--bg-color);
+    
+
+}
+
+h1,h2,h3{
+    line-height: 1.2;
+    color: var(--text-color-primary);
+    font-weight: var(--fw-bold);
+    /* quantidade de espaços em branco entre os caracteres */
+    letter-spacing: -0.04em;
+}
+
+
+h1{
+    font-size: var(--fs-2xl);    
+}
+
+h2{
+    font-size: var(--fs-xl);
+}
+
+h3{
+    font-size: var(--fs-lg);
+}
+
+a{
+    /* retira a marcação e a cor dos links */
+    text-decoration: none;
+    /* herda a cor do pai */
+    color:inherit;
+}
+
+a:hover{
+    background: linear-gradient(
+        90deg,
+        var(--brand-color-secondary) 0%,
+        var(--brand-color-primary)100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+
+}
+
+ul[role="list"]{
+    list-style: none;
+}
+
+img{
+    max-width: 100%;
+    display: inline-block;
+}
+
+
+
+/* se a largura for igual ou maior que 80em 1280px mude as fontes (isso diz que é mobile),
+ calcula os rem dos sizes do style guide.
+ Todas as modificações para web*/
+@media (width >= 80em){
+    :root{
+        --fs-lg:2rem;
+        --fs-xl: 3rem;
+        --fs-2xl:4rem;
+
+        /* padding eixo x web(lados) */
+        --px-lg:2rem;
+
+       /* padding eixo y (cima/baixo -  entre uma caixa e outra)  */
+        --py-base: 1.5rem;
+        --py-lg: 2.5rem;
+        --py-xl: 5rem;
+     }
+}

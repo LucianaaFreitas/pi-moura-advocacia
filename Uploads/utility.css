@@ -1,0 +1,78 @@
+.py-base{
+    /* define o eixo y (o padding dos blocos */
+    padding-block: var(--py-base);
+}
+.py-lg{
+    /* define o eixo y (o padding dos blocos */
+    padding-block: var(--py-lg);
+}
+.py-xl{
+    /* define o eixo y (o padding dos blocos */
+    padding-block: var(--py-xl);
+}
+
+.px-lg{
+    /* padding no sentido de linha */
+    padding-inline: var(--px-lg);
+}
+
+.container{
+    /* definindo primeiro para mobile */
+   --max-width: 375px;
+   width: min(var(--max-width),100% - var(--px-lg) * 2 );
+   margin-inline: auto;
+   /* border: solid violet; */
+}
+
+/* quando estiver no mobile, o display some */
+.desktop-only{
+    display: none;
+}
+
+/* colunas constantes- deixa um abaixo do outro no mobile
+pode ser feito com o flex tambem */
+.even-columns{
+    display: grid;
+    gap: 1rem;
+
+}
+
+.flex{
+    display: flex;
+}
+
+.items-center{
+    align-items: center;
+}
+
+.gap-1{
+    gap: 1rem;
+}
+
+.grid{
+    display: grid;
+}
+
+.gap-1\.5{
+    gap: 1.5rem;
+}
+
+
+/* como as minhas mesmas classes utilitárias ficaram no desktop */
+@media(width >= 80em){
+    .container{
+        --max-width:80rem;
+    }
+
+    .desktop-only{
+        display: initial;
+    }
+
+    .even-columns{
+        /*  */
+        grid-auto-flow: column;
+        /* colunas automaticas se encaixam de maneira por igual */
+        grid-auto-columns: 1fr;
+
+    }
+}
