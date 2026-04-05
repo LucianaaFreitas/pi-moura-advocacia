@@ -17,9 +17,8 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>model</module>
-    <module>application</module>
-    <module>adapter</module>
+    <module>user</module>
+    <module>customer</module>
     <module>bootstrap</module>
   </modules>
 

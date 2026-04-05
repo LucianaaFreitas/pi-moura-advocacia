@@ -1,4 +1,4 @@
-package com.mouraadvocacia.api.model.customer;
+package com.mouraadvocacia.api.domain.model;
 
 import java.util.UUID;
 

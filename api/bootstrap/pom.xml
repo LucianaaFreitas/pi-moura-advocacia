@@ -20,19 +20,13 @@
   <dependencies>
     <dependency>
       <groupId>com.mouraadvocacia.api</groupId>
-      <artifactId>adapter</artifactId>
+      <artifactId>customer</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.mouraadvocacia.api</groupId>
-      <artifactId>application</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.mouraadvocacia.api</groupId>
-      <artifactId>model</artifactId>
+      <artifactId>user</artifactId>
       <version>${project.version}</version>
     </dependency>
 
