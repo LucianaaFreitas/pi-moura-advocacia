@@ -1,31 +1,26 @@
-FROM eclipse-temurin:21-jdk-alpine AS build
+FROM maven:3.9.11-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 
-COPY api/mvnw api/pom.xml ./
-COPY api/.mvn .mvn
+COPY api/pom.xml api/pom.xml
+COPY api/bootstrap/pom.xml api/bootstrap/pom.xml
+COPY api/customer/pom.xml api/customer/pom.xml
+COPY api/user/pom.xml api/user/pom.xml
 
-COPY api/adapter/pom.xml adapter/
-COPY api/application/pom.xml application/
-COPY api/bootstrap/pom.xml bootstrap/
-COPY api/model/pom.xml model/
+RUN mvn -f api/pom.xml -pl bootstrap -am dependency:go-offline -B
 
-RUN ./mvnw dependency:go-offline -B
+COPY api/bootstrap/src api/bootstrap/src
+COPY api/customer/src api/customer/src
+COPY api/user/src api/user/src
 
-COPY api/adapter/src adapter/src
-COPY api/application/src application/src
-COPY api/bootstrap/src bootstrap/src
-COPY api/model/src model/src
-
-RUN ./mvnw clean package -DskipTests
+RUN mvn -f api/pom.xml -pl bootstrap -am clean package -DskipTests
 
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Run as non-root
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 
-COPY --from=build /app/bootstrap/target/*.jar app.jar
+COPY --from=build /app/api/bootstrap/target/*.jar app.jar
 
 EXPOSE 8080
 
