@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { KanbanBoard } from "../components/KanbanBoard";
 import { ProcessCard } from "../types/kanban";
-import { deleteProcess, getProcesses, updateProcess } from "../../api/ProcessService";
+import { deleteProcess, getProcesses, updateProcess } from "../../api/ProcessServiceLocalstorage";
 
 export default function Home() {
 	const [processes, setProcesses] = useState<ProcessCard[]>([]);
@@ -21,6 +21,8 @@ export default function Home() {
 	}, []);
 
 	const handleDelete = (id: string) => {
+		const confirmDelete = window.confirm("Tem certeza que deseja excluir este processo?");
+		if (!confirmDelete) return;
 		deleteProcess(id).then(() => fetchProcesses());
 		console.log("Excluir processo com ID:", id);
 	}
@@ -33,8 +35,17 @@ export default function Home() {
 
 	return (
 		<main className="min-h-screen bg-gray-50">
-			<Header title="Kanban Jurídico" subtitle="Gestão de Processos e Casos" />
-			<KanbanBoard processes={processes} onDelete={handleDelete} onMoveCard={handleMoveProcess}/>
+			<Header
+				title="Kanban Jurídico"
+				subtitle="Gestão de Processos e Casos"
+			/>
+			<KanbanBoard
+				processes={processes}
+				onDelete={handleDelete}
+				onMoveCard={handleMoveProcess}
+			/>
+
+			
 		</main>
 	);
 }

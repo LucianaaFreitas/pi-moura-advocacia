@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getProcessById, updateProcess } from "../../api/ProcessService";
+import { getProcessById, updateProcess } from "../../api/ProcessServiceLocalstorage";
 import Header from "../components/Header";
 import ProcessForm from "../components/ProcessForm";
 import { ProcessCard } from "../types/kanban";

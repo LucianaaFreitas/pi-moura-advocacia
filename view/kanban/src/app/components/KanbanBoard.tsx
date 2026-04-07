@@ -57,14 +57,7 @@ export function KanbanBoard({
 					))}
 				</div>
 
-				{/* Delete Confirmation Dialog */}
-				{/* <DeleteConfirmDialog
-          isOpen={deleteDialogOpen}
-          onClose={() => setDeleteDialogOpen(false)}
-          onConfirm={confirmDelete}
-          processTitle={cardToDelete?.titulo || ""}
-          processNumber={cardToDelete?.numeroProcesso || ""}
-        /> */}
+				
 			</div>
 		</section>
 	);
