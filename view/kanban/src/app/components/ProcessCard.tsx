@@ -1,4 +1,5 @@
 import { Calendar, User, MapPin, FileText, Edit2, Trash2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ProcessCard } from "../types/kanban";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -73,21 +74,20 @@ export function ProcessCardComponent({
 				<Button
 					variant="ghost"
 					size="sm"
-					className="p-1 h-7 w-7 hover:bg-blue-50"
-					onClick={(e) => {
-						e.stopPropagation();
-						onEdit(process);
-					}}
+					className="p-1 h-7 w-7 hover:bg-blue-50 cursor-pointer"
+					asChild
 				>
-					<Edit2 className="w-3.5 h-3.5 text-blue-600" />
+					<Link to={`/editar/${process.id}`}>
+						<Edit2 className="w-3.5 h-3.5 text-blue-600" />
+					</Link>
 				</Button>
 				<Button
 					variant="ghost"
 					size="sm"
-					className="p-1 h-7 w-7 hover:bg-red-50"
+					className="p-1 h-7 w-7 hover:bg-red-50 cursor-pointer"
 					onClick={(e) => {
 						e.stopPropagation();
-						onDelete(process);
+						onDelete(process.id);
 					}}
 				>
 					<Trash2 className="w-3.5 h-3.5 text-red-600" />

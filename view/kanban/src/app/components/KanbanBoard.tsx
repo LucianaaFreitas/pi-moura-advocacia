@@ -20,7 +20,13 @@ const columns: Column[] = [
 	},
 ];
 
-export function KanbanBoard({ processes }: { processes: ProcessCard[] }) {
+interface KanbanBoardProps {
+	processes: ProcessCard[];
+	onEdit: (process: ProcessCard) => void;
+	onDelete: (id: string) => void;
+}
+
+export function KanbanBoard({ processes, onEdit, onDelete }: KanbanBoardProps) {
 
 	return (
 		<section className="flex flex-col h-screen">
@@ -34,20 +40,12 @@ export function KanbanBoard({ processes }: { processes: ProcessCard[] }) {
 								(process) => process.status === column.id,
 							)}
 							onMoveCard={() => {}}
-							onEditCard={() => {}}
-							onDeleteCard={() => {}}
+							onEditCard={onEdit}
+							onDeleteCard={onDelete}
 						/>
 					))}
 				</div>
 
-				{/* Process Modal */}
-				{/* <ProcessModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onSave={handleSaveProcess}
-          initialData={editingCard}
-          mode={modalMode}
-        /> */}
 				{/* Delete Confirmation Dialog */}
 				{/* <DeleteConfirmDialog
           isOpen={deleteDialogOpen}
