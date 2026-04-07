@@ -6,13 +6,13 @@ import { Button } from "./ui/button";
 
 interface ProcessCardProps {
 	process: ProcessCard;
-	onEdit: (process: ProcessCard) => void;
+	onDragStart: (event: React.DragEvent<HTMLDivElement>, process: ProcessCard) => void;
 	onDelete: (id: string) => void;
 }
 
 export function ProcessCardComponent({
 	process: process,
-	onEdit,
+	onDragStart,
 	onDelete,
 }: ProcessCardProps) {
 	const getAreaColor = (area: string) => {
@@ -65,8 +65,11 @@ export function ProcessCardComponent({
 
 	return (
 		<div
+			draggable
+			onDragStart={(e) => onDragStart(e, process)}
 			className={
 				"bg-white rounded-lg shadow-sm border border-gray-200 p-4 cursor-move hover:shadow-md transition-all group relative "
+			
 			}
 		>
 			{/* Action Buttons */}

@@ -22,11 +22,22 @@ const columns: Column[] = [
 
 interface KanbanBoardProps {
 	processes: ProcessCard[];
-	onEdit: (process: ProcessCard) => void;
+	onMoveCard: (processId: string, newStatus: string) => void;
 	onDelete: (id: string) => void;
 }
 
-export function KanbanBoard({ processes, onEdit, onDelete }: KanbanBoardProps) {
+export function KanbanBoard({
+	processes,
+	onMoveCard,
+	onDelete,
+}: KanbanBoardProps) {
+	
+	function onDragStart(
+		event: React.DragEvent<HTMLDivElement>,
+		process: ProcessCard,
+	) {
+		event.dataTransfer.setData("processId", process.id);
+	}
 
 	return (
 		<section className="flex flex-col h-screen">
@@ -39,8 +50,8 @@ export function KanbanBoard({ processes, onEdit, onDelete }: KanbanBoardProps) {
 							processes={processes.filter(
 								(process) => process.status === column.id,
 							)}
-							onMoveCard={() => {}}
-							onEditCard={onEdit}
+							onDropCard={onMoveCard}
+							onDragStart={onDragStart}
 							onDeleteCard={onDelete}
 						/>
 					))}

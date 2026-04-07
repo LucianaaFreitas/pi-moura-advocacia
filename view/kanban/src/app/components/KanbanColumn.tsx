@@ -5,22 +5,38 @@ import { ProcessCardComponent } from "./ProcessCard";
 interface KanbanColumnProps {
 	column: Column;
 	processes: ProcessCard[];
-	onMoveCard: (cardId: string, targetColumnId: string) => void;
-	onEditCard: (card: ProcessCard) => void;
+	onDropCard: (processId: string, newStatus: string) => void;
+	onDragStart: (
+		event: React.DragEvent<HTMLDivElement>,
+		process: ProcessCard,
+	) => void;
 	onDeleteCard: (id: string) => void;
 }
 
 export function KanbanColumn({
 	column,
 	processes,
-	onMoveCard,
-	onEditCard,
+	onDropCard,
+	onDragStart,
 	onDeleteCard,
 }: KanbanColumnProps) {
-	
+	function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
+		event.preventDefault();
+	}
+
+	function handledrop(event: React.DragEvent<HTMLDivElement>) {
+		event.preventDefault();
+		const processId = event.dataTransfer.getData("processId");
+		if (processId) {
+			console.log(processId);
+			onDropCard(processId, column.id);
+		}
+	}
 
 	return (
 		<div
+			onDragOver={handleDragOver}
+			onDrop={handledrop}
 			className={`flex-shrink-0 w-80 flex flex-col bg-stone-100 shadow-[0px_0px_3px_0px_rgba(0,0,0,0.30)] rounded-lg transition-colors `}
 		>
 			{/* Column Header */}
@@ -41,7 +57,7 @@ export function KanbanColumn({
 					<ProcessCardComponent
 						key={card.id}
 						process={card}
-						onEdit={onEditCard}
+						onDragStart={onDragStart}
 						onDelete={onDeleteCard}
 					/>
 				))}
